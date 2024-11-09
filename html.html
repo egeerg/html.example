@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine Webseite</title>
+    <title>Erweiterte Webseite</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,8 +18,51 @@
             padding: 1rem;
             text-align: center;
         }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 0.5rem;
+        }
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
         main {
             padding: 1rem;
+        }
+        .gallery {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .gallery img {
+            width: 200px;
+            height: 150px;
+            border-radius: 8px;
+        }
+        .interactive-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn:hover {
+            background-color: #0056b3;
         }
         footer {
             background-color: #333;
@@ -30,24 +73,94 @@
             width: 100%;
             bottom: 0;
         }
+        .contact-form {
+            max-width: 400px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .contact-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
     </style>
+    <script>
+        function showAlert() {
+            alert("Danke für das Klicken!");
+        }
+    </script>
 </head>
 <body>
 
 <header>
-    <h1>Willkommen auf meiner Webseite!</h1>
+    <h1>Willkommen auf meiner erweiterten Webseite!</h1>
 </header>
 
+<nav>
+    <a href="#about">Über mich</a>
+    <a href="#gallery">Galerie</a>
+    <a href="#contact">Kontakt</a>
+</nav>
+
 <main>
-    <h2>Über mich</h2>
-    <p>Hallo! Ich bin ein Entwickler, der gerade HTML lernt. Dies ist eine Beispielwebseite, die einige Grundlagen zeigt.</p>
+    <section id="about">
+        <h2>Über mich</h2>
+        <p>Hallo! Ich bin ein Entwickler, der sich für Webtechnologien begeistert und gerne neue Funktionen ausprobiert.</p>
+    </section>
     
-    <h2>Kontakt</h2>
-    <p>Schreib mir eine E-Mail an <a href="mailto:beispiel@email.de">beispiel@email.de</a>.</p>
+    <section id="gallery">
+        <h2>Galerie</h2>
+        <div class="gallery">
+            <img src="https://via.placeholder.com/200x150" alt="Beispielbild 1">
+            <img src="https://via.placeholder.com/200x150" alt="Beispielbild 2">
+            <img src="https://via.placeholder.com/200x150" alt="Beispielbild 3">
+            <img src="https://via.placeholder.com/200x150" alt="Beispielbild 4">
+        </div>
+    </section>
+
+    <section class="interactive-section">
+        <h2>Interaktiver Bereich</h2>
+        <button class="btn" onclick="showAlert()">Klick mich!</button>
+    </section>
+
+    <section id="contact">
+        <h2>Kontaktformular</h2>
+        <div class="contact-form">
+            <form action="https://example.com/submit-form" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">E-Mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Nachricht:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Absenden</button>
+            </form>
+        </div>
+    </section>
 </main>
 
 <footer>
-    <p>&copy; 2023 Meine Webseite</p>
+    <p>&copy; 2023 Erweiterte Webseite</p>
 </footer>
 
 </body>
