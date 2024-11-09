@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erweiterte Webseite</title>
+    <title>Erweiterte Webseite mit zusätzlichen Funktionen</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,6 +11,7 @@
             color: #333;
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth;
         }
         header {
             background-color: #333;
@@ -48,7 +49,7 @@
             height: 150px;
             border-radius: 8px;
         }
-        .interactive-section {
+        .interactive-section, .faq-section {
             text-align: center;
             margin-top: 30px;
         }
@@ -100,11 +101,106 @@
         .contact-form button:hover {
             background-color: #0056b3;
         }
+        /* Slideshow */
+        .slideshow-container {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .slides {
+            display: none;
+        }
+        .slideshow-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            color: white;
+            font-size: 24px;
+            padding: 12px;
+            margin-top: -22px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+        .next {
+            right: 0;
+        }
+        .prev {
+            left: 0;
+        }
+        /* FAQ */
+        .faq-question {
+            cursor: pointer;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 50px;
+            right: 20px;
+            display: none;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
     </style>
     <script>
-        function showAlert() {
-            alert("Danke für das Klicken!");
+        // Slideshow
+        let slideIndex = 0;
+        function showSlides() {
+            const slides = document.getElementsByClassName("slides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 3000); // Wechselt alle 3 Sekunden
         }
+
+        // FAQ Toggle
+        function toggleFAQ(event) {
+            const answer = event.target.nextElementSibling;
+            answer.style.display = answer.style.display === "block" ? "none" : "block";
+        }
+
+        // Back to Top Button
+        window.onscroll = function() {
+            const topButton = document.getElementById("backToTop");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                topButton.style.display = "block";
+            } else {
+                topButton.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        document.addEventListener("DOMContentLoaded", showSlides);
     </script>
 </head>
 <body>
@@ -116,6 +212,7 @@
 <nav>
     <a href="#about">Über mich</a>
     <a href="#gallery">Galerie</a>
+    <a href="#faq">FAQ</a>
     <a href="#contact">Kontakt</a>
 </nav>
 
@@ -124,20 +221,27 @@
         <h2>Über mich</h2>
         <p>Hallo! Ich bin ein Entwickler, der sich für Webtechnologien begeistert und gerne neue Funktionen ausprobiert.</p>
     </section>
-    
+
+    <!-- Slideshow -->
     <section id="gallery">
-        <h2>Galerie</h2>
-        <div class="gallery">
-            <img src="https://via.placeholder.com/200x150" alt="Beispielbild 1">
-            <img src="https://via.placeholder.com/200x150" alt="Beispielbild 2">
-            <img src="https://via.placeholder.com/200x150" alt="Beispielbild 3">
-            <img src="https://via.placeholder.com/200x150" alt="Beispielbild 4">
+        <h2>Slideshow-Galerie</h2>
+        <div class="slideshow-container">
+            <div class="slides"><img src="https://via.placeholder.com/600x400" alt="Bild 1"></div>
+            <div class="slides"><img src="https://via.placeholder.com/600x400" alt="Bild 2"></div>
+            <div class="slides"><img src="https://via.placeholder.com/600x400" alt="Bild 3"></div>
+            <a class="prev" onclick="slideIndex -= 2; showSlides()">&#10094;</a>
+            <a class="next" onclick="showSlides()">&#10095;</a>
         </div>
     </section>
 
-    <section class="interactive-section">
-        <h2>Interaktiver Bereich</h2>
-        <button class="btn" onclick="showAlert()">Klick mich!</button>
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <h2>Häufig gestellte Fragen</h2>
+        <div class="faq-question" onclick="toggleFAQ(event)">Was ist diese Seite?</div>
+        <div class="faq-answer">Diese Seite ist ein Beispiel für eine erweiterte Webseite mit verschiedenen Funktionen.</div>
+
+        <div class="faq-question" onclick="toggleFAQ(event)">Wie kann ich Kontakt aufnehmen?</div>
+        <div class="faq-answer">Nutzen Sie einfach das Kontaktformular weiter unten.</div>
     </section>
 
     <section id="contact">
@@ -162,6 +266,9 @@
 <footer>
     <p>&copy; 2023 Erweiterte Webseite</p>
 </footer>
+
+<!-- Back to Top Button -->
+<div id="backToTop" class="back-to-top" onclick="scrollToTop()">⬆️ Nach oben</div>
 
 </body>
 </html>
